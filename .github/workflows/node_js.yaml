@@ -81,4 +81,4 @@ jobs:
 
     steps:
       - run: echo ${{ github.ref }}
-      - run: echo "$package_tag"
+      - run: echo $package_tag
