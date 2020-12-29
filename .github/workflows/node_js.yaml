@@ -57,14 +57,11 @@ jobs:
   deploy-github-releases:
     runs-on: ubuntu-latest
 
-    env:
-      test: "Hello World"
-
     needs: [build, test]
     if: success() && startsWith(github.ref, 'refs/tags/')
 
     steps:
-      - run: echo "$test"
+      - run: echo "Hello World"
 
   deploy-vscode-marketplace:
     runs-on: ubuntu-latest
@@ -73,15 +70,15 @@ jobs:
     if: success() && startsWith(github.ref, 'refs/tags/')
 
     steps:
-      - run: echo "$test"
+      - run: echo "Hello World"
 
 # Testing jobs
   echo-env:
     runs-on: ubuntu-latest
 
     env:
-      package-tag: $(node -p "require('./package.json').version")
+      package_tag: $(node -p "require('./package.json').version")
 
     steps:
       - run: echo ${{ github.ref }}
-      - run: echo "$package-tag"
+      - run: echo "$package_tag"
