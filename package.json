@@ -2,6 +2,7 @@
 	"name": "gh-actions-test-vscode-extension",
 	"displayName": "GitHub Actions Test Extension",
 	"description": "A test extension for mimicking myt Travis CI config for Kotlin for FRC on Github Actions",
+	"publisher": "Brenek",
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.52.0"
