@@ -94,7 +94,7 @@ jobs:
           tag_name: ${{ github.ref }}
           release_name: Version ${{ github.ref }}
           # TODO: Automatically fill body variable
-          body: ""
+          body: "**TODO: Enter information**"
           draft: false
           prerelease: ${{ env.PREREL }}
 
