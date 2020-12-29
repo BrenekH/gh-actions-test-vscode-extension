@@ -78,6 +78,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - run: PACKAGE_TAG=$(node -p "require('./package.json').version")
+      - run: echo "PACKAGE_TAG=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
       - run: echo ${{ github.ref }}
       - run: echo $PACKAGE_TAG
