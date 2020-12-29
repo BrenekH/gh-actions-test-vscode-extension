@@ -21,6 +21,12 @@ export function activate(context: vscode.ExtensionContext) {
 	});
 
 	context.subscriptions.push(disposable);
+
+	disposable = vscode.commands.registerCommand("gh-actions-test-vscode-extension.goodbyeWorld", () => {
+		vscode.window.showInformationMessage(getGoodbyeMessage());
+	});
+
+	context.subscriptions.push(disposable);
 }
 
 // this method is called when your extension is deactivated
@@ -28,4 +34,8 @@ export function deactivate() {}
 
 export function getHelloWorldMessage(): string {
 	return "Hello World from GitHub Actions Test Extension!";
+}
+
+export function getGoodbyeMessage(): string {
+	return "Goodbye";
 }

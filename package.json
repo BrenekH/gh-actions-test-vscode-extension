@@ -3,7 +3,7 @@
 	"displayName": "GitHub Actions Test Extension",
 	"description": "A test extension for mimicking my Travis CI config for Kotlin for FRC on Github Actions",
 	"publisher": "Brenek",
-	"version": "0.0.4-alpha.2",
+	"version": "0.0.4",
 	"repository": "https://github.com/zPaw/gh-actions-test-vscode-extension",
 	"engines": {
 		"vscode": "^1.52.0"
@@ -12,7 +12,8 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:gh-actions-test-vscode-extension.helloWorld"
+		"onCommand:gh-actions-test-vscode-extension.helloWorld",
+		"onCommand:gh-actions-test-vscode-extension.goodbyeWorld"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
@@ -20,6 +21,10 @@
 			{
 				"command": "gh-actions-test-vscode-extension.helloWorld",
 				"title": "Hello World"
+			},
+			{
+				"command": "gh-actions-test-vscode-extension.goodbyeWorld",
+				"title": "Goodbye World"
 			}
 		]
 	},
