@@ -12,7 +12,8 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:gh-actions-test-vscode-extension.helloWorld"
+		"onCommand:gh-actions-test-vscode-extension.helloWorld",
+		"onCommand:gh-actions-test-vscode-extension.goodbyeWorld"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
@@ -20,6 +21,10 @@
 			{
 				"command": "gh-actions-test-vscode-extension.helloWorld",
 				"title": "Hello World"
+			},
+			{
+				"command": "gh-actions-test-vscode-extension.goodbyeWorld",
+				"title": "Goodbye World"
 			}
 		]
 	},
