@@ -79,7 +79,30 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: vsix-file
-      - run: echo "Hello World"
+
+      - name: Set PREREL environment variable
+        env:
+          TAG: ${{ github.ref }}
+        run: echo "PREREL=$(if [[ $TAG =~ "alpha" ]] || [[ $TAG =~ "beta" ]] || [[ $TAG =~ "rc" ]]; then echo "true"; else echo "false"; fi;)" >> $GITHUB_ENV
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Version ${{ github.ref }}
+          draft: false
+          prerelease: ${{ env.PREREL }}
+
+      - name: Upload VSIX Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: gh-actions-test-vscode-extension-${{ github.ref }}.vsix
 
   deploy-vscode-marketplace:
     runs-on: ubuntu-latest
