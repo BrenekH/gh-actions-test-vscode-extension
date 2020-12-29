@@ -57,7 +57,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: vsix-file
-          path: *.vsix
+          path: "*.vsix"
   
   deploy-github-releases:
     runs-on: ubuntu-latest
