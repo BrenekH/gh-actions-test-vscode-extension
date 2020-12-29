@@ -121,3 +121,7 @@ jobs:
       - run: echo "PACKAGE_TAG=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
       - run: echo ${{ github.ref }}
       - run: echo $PACKAGE_TAG
+      - run: echo "Pre-release"
+        if: "contains(env.PACKAGE_TAG, 'alpha')"
+      - run: echo "Release"
+        if: "!contains(env.PACKAGE_TAG, 'alpha')"
