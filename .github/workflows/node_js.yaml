@@ -122,6 +122,6 @@ jobs:
       - run: echo ${{ github.ref }}
       - run: echo $PACKAGE_TAG
       - run: echo "Pre-release"
-        if: "contains(env.PACKAGE_TAG, 'alpha')"
+        if: "contains(env.PACKAGE_TAG, 'alpha') || contains(env.PACKAGE_TAG, 'beta') || contains(env.PACKAGE_TAG, 'rc')"
       - run: echo "Release"
-        if: "!contains(env.PACKAGE_TAG, 'alpha')"
+        if: "!(contains(env.PACKAGE_TAG, 'alpha') || contains(env.PACKAGE_TAG, 'beta') || contains(env.PACKAGE_TAG, 'rc'))"
