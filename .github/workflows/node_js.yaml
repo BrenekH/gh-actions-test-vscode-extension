@@ -99,7 +99,7 @@ jobs:
       - name: Create sanitized github.ref
         env:
           TO_SANITIZE: ${{ github.ref }}
-        run: echo "SANITIZED_REF=$(./.github/scripts/sanitize_tag_ref)" >> $GITHUB_ENV
+        run: echo "SANITIZED_REF=$(./.github/scripts/sanitize_tag_ref.sh)" >> $GITHUB_ENV
 
       - name: Upload VSIX Asset
         uses: actions/upload-release-asset@v1
