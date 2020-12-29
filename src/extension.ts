@@ -25,6 +25,8 @@ export function activate(context: vscode.ExtensionContext) {
 	disposable = vscode.commands.registerCommand("gh-actions-test-vscode-extension.goodbyeWorld", () => {
 		vscode.window.showInformationMessage(getGoodbyeMessage());
 	});
+
+	context.subscriptions.push(disposable);
 }
 
 // this method is called when your extension is deactivated
