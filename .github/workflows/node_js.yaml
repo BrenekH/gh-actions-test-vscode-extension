@@ -13,19 +13,23 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+
       - name: Cache Node Modules
         uses: actions/cache@v2
         env:
           cache-name: cache-node-modules
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-node${{ matrix.node-version }}-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+
       - name: Install Frozen Dependencies
         run: npm ci
+
       - run: xvfb-run -a npm test
 
   build:
@@ -41,18 +45,23 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+
       - name: Cache Node Modules
         uses: actions/cache@v2
         env:
           cache-name: cache-node-modules
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-node${{ matrix.node-version }}-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+
       - name: Globally Install VSCE
         run: npm install -g vsce
+
       - name: Install Frozen Dependencies
         run: npm ci
+
       - run: vsce package
+
       - name: Upload .vsix artifact
         uses: actions/upload-artifact@v2
         with:
@@ -79,7 +88,29 @@ jobs:
     if: success() && startsWith(github.ref, 'refs/tags/')
 
     steps:
-      - run: echo "Hello World"
+      - uses: actions/checkout@v2
+
+      - name: Setup Node.js v14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      - name: Cache Node Modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node14.x-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Globally Install VSCE
+        run: npm install -g vsce
+
+      - name: Install Frozen Dependencies
+        run: npm ci
+
+      - name: Publish to VSCode Marketplace
+        run: vsce publish -p ${{ secrets.VSCE_PUBLISHER_TOKEN }}
 
 # Random testing jobs
   echo-env:
