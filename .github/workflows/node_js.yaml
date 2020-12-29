@@ -97,9 +97,7 @@ jobs:
           prerelease: ${{ env.PREREL }}
 
       - name: Create sanitized github.ref
-        env:
-          TO_SANITIZE: ${{ github.ref }}
-        run: echo "SANITIZED_REF=$(./.github/scripts/sanitize_tag_ref.sh)" >> $GITHUB_ENV
+        run: echo "TAG_USED=$(echo ${GITHUB_REF:10})" >> $GITHUB_ENV
 
       - name: Upload VSIX Asset
         uses: actions/upload-release-asset@v1
@@ -107,8 +105,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./gh-actions-test-vscode-extension-${{ env.SANITIZED_REF }}.vsix
-          asset_name: gh-actions-test-vscode-extension-${{ env.SANITIZED_REF }}.vsix
+          asset_path: ./gh-actions-test-vscode-extension-${{ env.TAG_USED }}.vsix
+          asset_name: gh-actions-test-vscode-extension-${{ env.TAG_USED }}.vsix
           asset_content_type: application/octet-stream
 
   deploy-vscode-marketplace:
