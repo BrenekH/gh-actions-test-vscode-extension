@@ -76,9 +76,7 @@ jobs:
   echo-env:
     runs-on: ubuntu-latest
 
-    env:
-      package_tag: $(node -p "require('./package.json').version")
-
     steps:
+      - run: PACKAGE_TAG=$(node -p "require('./package.json').version")
       - run: echo ${{ github.ref }}
       - run: echo $package_tag
