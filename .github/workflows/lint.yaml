@@ -3,8 +3,8 @@ name: Lint Code Base
 on: [push, pull_request]
 
 jobs:
-  lint-json-md-ts:
-    name: Lint JSON, Markdown, and Typescript
+  lint-md-ts:
+    name: Lint Markdown, and Typescript
     runs-on: ubuntu-latest
 
     steps:
@@ -18,7 +18,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BRANCH: master
-          VALIDATE_JSON: true
           VALIDATE_MARKDOWN: true
           VALIDATE_TYPESCRIPT_ES: true
           TYPESCRIPT_ES_CONFIG_FILE: .eslintrc.json
