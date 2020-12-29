@@ -104,6 +104,7 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./gh-actions-test-vscode-extension-${{ github.ref }}.vsix
           asset_name: gh-actions-test-vscode-extension-${{ github.ref }}.vsix
+          asset_content_type: application/octet-stream
 
   deploy-vscode-marketplace:
     runs-on: ubuntu-latest
