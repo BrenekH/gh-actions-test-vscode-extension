@@ -12,21 +12,21 @@ jobs:
         node-version: [12.x, 14.x]
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: Cache Node Modules
-      uses: actions/cache@v2
-      env:
-        cache-name: cache-node-modules
-      with:
-        path: ~/.npm
-        key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-    - name: Install Frozen Dependencies
-      run: npm ci
-    - run: xvfb-run -a npm test
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Cache Node Modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+      - name: Install Frozen Dependencies
+        run: npm ci
+      - run: xvfb-run -a npm test
   
   build:
     runs-on: ubuntu-latest
@@ -36,23 +36,28 @@ jobs:
         node-version: [12.x, 14.x]
     
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: Cache Node Modules
-      uses: actions/cache@v2
-      env:
-        cache-name: cache-node-modules
-      with:
-        path: ~/.npm
-        key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-    - name: Globally Install VSCE
-      run: npm install -g vsce
-    - name: Install Frozen Dependencies
-      run: npm ci
-    - run: vsce package
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Cache Node Modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+      - name: Globally Install VSCE
+        run: npm install -g vsce
+      - name: Install Frozen Dependencies
+        run: npm ci
+      - run: vsce package
+      - name: Upload .vsix artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: vsix-file
+          path: *.vsix
   
   deploy-github-releases:
     runs-on: ubuntu-latest
@@ -61,6 +66,10 @@ jobs:
     if: success() && startsWith(github.ref, 'refs/tags/')
 
     steps:
+      - name: Download .vsix artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: vsix-file
       - run: echo "Hello World"
 
   deploy-vscode-marketplace:
@@ -72,7 +81,7 @@ jobs:
     steps:
       - run: echo "Hello World"
 
-# Testing jobs
+# Random testing jobs
   echo-env:
     runs-on: ubuntu-latest
 
