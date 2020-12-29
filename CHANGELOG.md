@@ -1,9 +1,11 @@
 # Change Log
 
-All notable changes to the "gh-actions-test-vscode-extension" extension will be documented in this file.
+## 0.0.4
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+### Enhancements
 
-## Unreleased
+- Started the changelog
 
-- Initial release
+- Added Goodbye command
+
+- Added automatic linting via GitHub Actions
