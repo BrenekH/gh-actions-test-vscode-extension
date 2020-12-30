@@ -1,9 +1,9 @@
 name: Lint Code Base
 
 on:
-  push:
-    branches: [develop]
-  pull_request
+  - push:
+      branches: [develop]
+  - pull_request
 
 jobs:
   lint-md-ts:
