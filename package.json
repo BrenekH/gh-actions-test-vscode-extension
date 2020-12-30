@@ -5,6 +5,7 @@
 	"publisher": "Brenek",
 	"version": "0.0.4",
 	"repository": "https://github.com/zPaw/gh-actions-test-vscode-extension",
+	"preview": true,
 	"engines": {
 		"vscode": "^1.52.0"
 	},
