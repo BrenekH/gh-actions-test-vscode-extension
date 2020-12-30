@@ -1,8 +1,14 @@
 # Change Log
 
+## 0.0.5-alpha.1
+
+**Enhancements:**
+
+- Automatically populate GitHub Release body
+
 ## 0.0.4
 
-### Enhancements
+**Enhancements:**
 
 - Started the changelog
 

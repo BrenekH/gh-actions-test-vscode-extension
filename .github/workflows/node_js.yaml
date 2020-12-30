@@ -76,6 +76,8 @@ jobs:
     if: success() && startsWith(github.ref, 'refs/tags/')
 
     steps:
+      - uses: actions/checkout@v2
+
       - name: Download .vsix artifact
         uses: actions/download-artifact@v2
         with:
@@ -94,8 +96,7 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           release_name: Version ${{ github.ref }}
-          # TODO: Automatically fill body variable
-          body: "**TODO: Enter information**"
+          body_file: ./truncated_changelog.md
           draft: false
           prerelease: ${{ env.PREREL }}
 
@@ -148,18 +149,4 @@ jobs:
 
       - name: Publish to VSCode Marketplace
         run: vsce publish -p ${{ secrets.VSCE_PUBLISHER_TOKEN }}
-        if: "!(contains(env.PACKAGE_TAG, 'alpha') || contains(env.PACKAGE_TAG, 'beta') || contains(env.PACKAGE_TAG, 'rc'))"
-
-# Random testing jobs
-  echo-env:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-      - run: echo "PACKAGE_TAG=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
-      - run: echo ${{ github.ref }}
-      - run: echo $PACKAGE_TAG
-      - run: echo "Pre-release"
-        if: "contains(env.PACKAGE_TAG, 'alpha') || contains(env.PACKAGE_TAG, 'beta') || contains(env.PACKAGE_TAG, 'rc')"
-      - run: echo "Release"
         if: "!(contains(env.PACKAGE_TAG, 'alpha') || contains(env.PACKAGE_TAG, 'beta') || contains(env.PACKAGE_TAG, 'rc'))"
