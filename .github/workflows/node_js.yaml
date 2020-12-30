@@ -88,6 +88,9 @@ jobs:
           TAG: ${{ github.ref }}
         run: echo "PREREL=$(if [[ $TAG =~ "alpha" ]] || [[ $TAG =~ "beta" ]] || [[ $TAG =~ "rc" ]]; then echo "true"; else echo "false"; fi;)" >> $GITHUB_ENV
 
+      - name: Create Modified Release Notes
+        run: sed '1,4d' RELEASE_NOTES.md > modded_release_notes.md
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -96,7 +99,7 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           release_name: Version ${{ github.ref }}
-          body_path: ./truncated_changelog.md
+          body_path: ./modded_release_notes.md
           draft: false
           prerelease: ${{ env.PREREL }}
 
