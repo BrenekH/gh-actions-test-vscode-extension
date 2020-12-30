@@ -96,7 +96,7 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           release_name: Version ${{ github.ref }}
-          body_file: ./truncated_changelog.md
+          body_path: ./truncated_changelog.md
           draft: false
           prerelease: ${{ env.PREREL }}
 

@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.0.5-alpha.2
+
+- Apparently it's body_path
+
 ## 0.0.5-alpha.1
 
 **Enhancements:**

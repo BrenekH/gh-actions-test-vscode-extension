@@ -1,5 +1,5 @@
-# 0.0.5-alpha.1
+# 0.0.5-alpha.2
 
 **Enhancements:**
 
-- Automatically populate GitHub Release body
+- Apparently it's body_path
