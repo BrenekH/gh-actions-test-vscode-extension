@@ -1,9 +1,7 @@
 # Extension Name
 
-## [0.0.5-alpha.3](https://github.com/zPaw) \(2020-12-29\)
+## [0.0.5](https://github.com/zPaw) \(2021-01-05\)
 
 **Implemented Enhancements:**
 
-- I don't know
-
-- Fair enough
+- Add badges to package.json
