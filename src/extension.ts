@@ -29,6 +29,7 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(disposable);
 
 	// This comment is an interesting and necessary "feature"
+	// Here is another interesting and necessary "feature"
 }
 
 // this method is called when your extension is deactivated
