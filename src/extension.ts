@@ -40,5 +40,5 @@ export function getHelloWorldMessage(): string {
 }
 
 export function getGoodbyeMessage(): string {
-	return "Goodbye, World!";
+	return "Goodbye, World!!";
 }
