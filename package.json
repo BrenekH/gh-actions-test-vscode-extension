@@ -3,7 +3,7 @@
 	"displayName": "GitHub Actions Test Extension",
 	"description": "A test extension for mimicking my Travis CI config for Kotlin for FRC on Github Actions",
 	"publisher": "Brenek",
-	"version": "0.0.7-alpha.1",
+	"version": "0.0.7",
 	"repository": "https://github.com/zPaw/gh-actions-test-vscode-extension",
 	"preview": true,
 	"engines": {
