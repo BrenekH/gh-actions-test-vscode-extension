@@ -12,6 +12,6 @@ suite('Extension Test Suite', () => {
 	});
 
 	test("Hello World Message", () => {
-		assert.strictEqual(myExtension.getHelloWorldMessage(), "Hello World from GitHub Actions Test Extension!");
+		assert.strictEqual(myExtension.getHelloWorldMessage(), "Hello, World! - from GitHub Actions Test Extension!");
 	});
 });
