@@ -1,5 +1,17 @@
 # Change Log
 
+## 0.0.7
+
+**Implemented Enhancements:**
+
+- Added more punctuation to Hello and Goodbye World commands to constitute a change
+
+## 0.0.5
+
+**Implemented Enhancements:**
+
+- Add badges to package.json
+
 ## 0.0.5-alpha.3
 
 **Implemented Enhancements:**
