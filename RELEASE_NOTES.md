@@ -1,7 +1,7 @@
-# Extension Name
+# GitHub Actions Test Extension
 
-## [0.0.5](https://github.com/zPaw) \(2021-01-05\)
+## [0.0.7](https://github.com/zPaw/releases/0.0.7) \(2021-02-11\)
 
 **Implemented Enhancements:**
 
-- Add badges to package.json
+- Added more punctuation to Hello and Goodbye World commands to constitute a change
