@@ -36,9 +36,9 @@ export function activate(context: vscode.ExtensionContext) {
 export function deactivate() {}
 
 export function getHelloWorldMessage(): string {
-	return "Hello World from GitHub Actions Test Extension!";
+	return "Hello, World! - from GitHub Actions Test Extension!";
 }
 
 export function getGoodbyeMessage(): string {
-	return "Goodbye";
+	return "Goodbye, World!";
 }
