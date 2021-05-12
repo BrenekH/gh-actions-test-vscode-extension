@@ -65,7 +65,7 @@ jobs:
       - name: Upload .vsix artifact
         uses: actions/upload-artifact@v2
         with:
-          name: vsix-file
+          name: VSIXfile
           path: "*.vsix"
         if: startsWith(github.ref, 'refs/tags/')
 
@@ -82,7 +82,12 @@ jobs:
         id: download_vsix
         uses: actions/download-artifact@v2
         with:
-          name: vsix-file
+          name: VSIXfile
+
+      - name: Debug Echo
+        run: |
+          echo "Download Path: ${{ steps.download_vsix.outputs.download-path }}"
+          echo "List Files: $(ls -a -R ${{ steps.download_vsix.outputs.download-path }})"
 
       - name: Set PREREL environment variable
         env:
