@@ -79,6 +79,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Download .vsix artifact
+        id: download_vsix
         uses: actions/download-artifact@v2
         with:
           name: vsix-file
@@ -112,7 +113,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./gh-actions-test-vscode-extension-${{ env.TAG_USED }}.vsix
+          asset_path: ${{ steps.download_vsix.outputs.download-path }}
           asset_name: gh-actions-test-vscode-extension-${{ env.TAG_USED }}.vsix
           asset_content_type: application/octet-stream
 
@@ -123,8 +124,9 @@ jobs:
     if: success() && startsWith(github.ref, 'refs/tags/') && !contains(github.ref, 'alpha') && !contains(github.ref, 'beta') && !contains(github.ref, 'rc')
 
     steps:
-      - uses: actions/download-artifact@v2
-        name: Download VSIX Artifact
+      - name: Download VSIX Artifact
+        id: download_vsix
+        uses: actions/download-artifact@v2
         with:
           name: vsix-file
           path: ${{ github.workspace }}/artifact
@@ -137,4 +139,4 @@ jobs:
         run: npm i -g vsce
 
       - name: Publish to Marketplace
-        run: vsce publish --pat ${{ secrets.VSCE_PUBLISHER_TOKEN }} --packagePath ${{ github.workspace }}/artifact/*.vsix
+        run: vsce publish --pat ${{ secrets.VSCE_PUBLISHER_TOKEN }} --packagePath ${{ steps.download_vsix.outputs.download-path }}
