@@ -135,4 +135,4 @@ jobs:
           node-version: '10.x'
 
       - name: Publish to Marketplace
-        run: npx vsce publish --pat ${{ secrets.VSCE_PUBLISHER_TOKEN }} --packagePath ${{ steps.download_vsix.outputs.download-path }}
+        run: npx vsce publish --pat ${{ secrets.VSCE_PUBLISHER_TOKEN }} --packagePath ${{ steps.download_vsix.outputs.download-path }}/$(ls ${{ steps.download_vsix.outputs.download-path }} | grep ".vsix")
