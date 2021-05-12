@@ -79,16 +79,9 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Download .vsix artifact
-        id: download_vsix
         uses: actions/download-artifact@v2
         with:
           name: VSIXfile
-          path: ${{ github.workspace }}/artifact
-
-      - name: Debug Echo
-        run: |
-          echo "Download Path: ${{ steps.download_vsix.outputs.download-path }}"
-          echo "List Files: $(ls -a -R ${{ steps.download_vsix.outputs.download-path }})"
 
       - name: Set PREREL environment variable
         env:
@@ -119,7 +112,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{ steps.download_vsix.outputs.download-path }}
+          asset_path: ./gh-actions-test-vscode-extension-${{ env.TAG_USED }}.vsix
           asset_name: gh-actions-test-vscode-extension-${{ env.TAG_USED }}.vsix
           asset_content_type: application/octet-stream
 
