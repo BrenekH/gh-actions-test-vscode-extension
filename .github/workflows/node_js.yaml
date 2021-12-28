@@ -9,7 +9,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x]
+        node-version: [14.x, 16.x]
 
     steps:
       - uses: actions/checkout@v2
@@ -37,7 +37,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x]
+        node-version: [14.x, 16.x]
 
     steps:
       - uses: actions/checkout@v2
@@ -125,10 +125,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Setup Node.js v14.x
+      - name: Setup Node.js v16.x
         uses: actions/setup-node@v1
         with:
-          node-version: 14.x
+          node-version: 16.x
 
       - name: Set PACKAGE_TAG environment variable
         run: echo "PACKAGE_TAG=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
